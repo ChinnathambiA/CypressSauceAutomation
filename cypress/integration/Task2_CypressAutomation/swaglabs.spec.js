@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import AllObjects from '../../support/PageObjects/obj_repo.js'
 //Test suite
-describe("Adjust_home_task_suite", ()=>{
+describe("Test_home_task_suite", ()=>{
     beforeEach(function(){
         //Get data from testdata.json and send to each test case
         cy.fixture('testdata').then(function(data){
