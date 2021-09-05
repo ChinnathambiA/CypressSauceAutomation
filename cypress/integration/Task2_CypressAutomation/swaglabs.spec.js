@@ -1,19 +1,25 @@
 /// <reference types="cypress" />
 import AllObjects from '../../support/PageObjects/obj_repo.js'
-
+//Test suite
 describe("Adjust_home_task_suite", ()=>{
     beforeEach(function(){
+        //Get data from testdata.json and send to each test case
         cy.fixture('testdata').then(function(data){
             this.data = data;
             cy.log(this.data.stdUsername)
           })
-        cy.visit('https://www.saucedemo.com/')
-    })    
+        //Get url from cypress.json and Open the url for each test case
+        cy.visit(Cypress.env('url'))
+    })  
+    
+    /*This test case is to verify the no of products displayed in the prodcut page 
+    and print all the prodcuts
+    */
     it('Verify the product count and print', function(){
         cy.login(this.data.stdUsername,this.data.password)
         AllObjects.commonObj.pageTitletext().should('have.text','Products')
         AllObjects.prodcutPage.allProductName()
-        .should('have.length','6')
+        .should('have.length',this.data.noOfProducts)
         .then(($prods)=>{
             cy.log('Total products '+$prods.length)
         })
@@ -22,7 +28,9 @@ describe("Adjust_home_task_suite", ()=>{
         })
         cy.logout()
     })
-
+    /*
+    This test case is to buy a given product from the testdata.json
+    */
     it('Buy a product', function(){
         const product = this.data.product
         cy.login(this.data.stdUsername,this.data.password)
@@ -48,8 +56,12 @@ describe("Adjust_home_task_suite", ()=>{
         AllObjects.completePage.thankYouMessage().should('be.visible').contains('THANK YOU FOR YOUR ORDER')
         AllObjects.completePage.deliveryOption().should('be.visible')
         AllObjects.completePage.backToHomeButton().click()
+        AllObjects.commonObj.pageTitletext().should('have.text','Products')
         cy.logout()
     })
+    /*
+    This test case is to verify the locked message for locked user
+    */
     it('Login with locked_out_user', function(){
         cy.login(this.data.logoutuser,this.data.password)
         cy.contains('Sorry, this user has been locked out')

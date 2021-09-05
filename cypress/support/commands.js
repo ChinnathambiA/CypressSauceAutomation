@@ -26,11 +26,17 @@ import AllObjects from '../support/PageObjects/obj_repo'
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+/*
+This common command used to login to the application
+*/
 Cypress.Commands.add('login', (username, password)=>{
     AllObjects.loginPage.userNameField().type(username)
     AllObjects.loginPage.passwordField().type(password)
     AllObjects.loginPage.loginButton().click() 
 })
+/*
+This common command used to logout from the application
+*/
 Cypress.Commands.add('logout', ()=>{
     AllObjects.commonObj.menuIcon().click()
     AllObjects.commonObj.logoutMenu().click()

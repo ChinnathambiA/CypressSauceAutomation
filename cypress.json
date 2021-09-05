@@ -11,5 +11,8 @@
             "html": false,
             "json": true
         }
-    }
+    },
+    "env": {
+        "url": "https://www.saucedemo.com/"
+      }
   }
