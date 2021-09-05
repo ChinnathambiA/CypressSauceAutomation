@@ -1,7 +1,7 @@
 {
   "name": "cypressxpath",
   "version": "1.0.0",
-  "description": "adjust home task",
+  "description": "Test home task",
   "main": "index.js",
 
   "scripts": {
