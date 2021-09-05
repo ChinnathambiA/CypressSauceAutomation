@@ -1,0 +1,150 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-09-05T15:16:13.580Z",
+    "end": "2021-09-05T15:17:15.418Z",
+    "duration": 61838,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "80d524d3-fdff-4575-b6d5-9e0f3eca9e0c",
+      "title": "",
+      "fullFile": "cypress/integration/Task2_CypressAutomation/swaglabs.spec.js",
+      "file": "cypress/integration/Task2_CypressAutomation/swaglabs.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5eb8bb50-c514-4477-b0c3-1f6f754fe2b3",
+          "title": "Adjust_home_task_suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify the product count and print",
+              "fullTitle": "Adjust_home_task_suite Verify the product count and print",
+              "timedOut": null,
+              "duration": 17212,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login(this.data.stdUsername, this.data.password);\n_obj_repo.default.commonObj.pageTitletext().should('have.text', 'Products');\n_obj_repo.default.prodcutPage.allProductName().should('have.length', '6').then($prods => {\n  cy.log('Total products ' + $prods.length);\n}).each(($prod, index, $prods) => {\n  cy.log($prod.text());\n});\ncy.logout();",
+              "err": {},
+              "uuid": "248fc819-6a21-4f0c-9ffc-15b0e1fe25fb",
+              "parentUUID": "5eb8bb50-c514-4477-b0c3-1f6f754fe2b3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Buy a product",
+              "fullTitle": "Adjust_home_task_suite Buy a product",
+              "timedOut": null,
+              "duration": 31528,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const product = this.data.product;\ncy.login(this.data.stdUsername, this.data.password);\n_obj_repo.default.commonObj.pageTitletext().should('have.text', 'Products');\n_obj_repo.default.prodcutPage.addProductToCartButton(product).click();\n_obj_repo.default.prodcutPage.cartButton().click();\n_obj_repo.default.commonObj.pageTitletext().should('have.text', 'Your Cart'); //AllObjects.cartPage.productName().should('have.text','Sauce Labs Backpack')\n\n_obj_repo.default.cartPage.productName().then($el => {\n  const txt = $el.text();\n  expect(txt).to.eq(product);\n});\n_obj_repo.default.cartPage.checkOutButton().click();\n_obj_repo.default.commonObj.pageTitletext().should('have.text', 'Checkout: Your Information');\n_obj_repo.default.yourInformationPage.firstNameField().type(this.data.firstname);\n_obj_repo.default.yourInformationPage.lastNameField().type(this.data.lastname);\n_obj_repo.default.yourInformationPage.postalCodeField().type(this.data.postalcode);\n_obj_repo.default.yourInformationPage.continueButton().click();\n_obj_repo.default.commonObj.pageTitletext().should('have.text', 'Checkout: Overview');\ncy.contains('FREE PONY EXPRESS DELIVERY!');\n_obj_repo.default.checkOutOverviewPage.finishButton().click();\n_obj_repo.default.commonObj.pageTitletext().should('have.text', 'Checkout: Complete!');\n_obj_repo.default.completePage.thankYouMessage().should('be.visible').contains('THANK YOU FOR YOUR ORDER');\n_obj_repo.default.completePage.deliveryOption().should('be.visible');\n_obj_repo.default.completePage.backToHomeButton().click();\ncy.logout();",
+              "err": {
+                "message": "CypressError: Timed out retrying after 15050ms: `cy.click()` failed because this element is not visible:\n\n`<a id=\"logout_sidebar_link\" class=\"bm-item menu-item\" href=\"#\" tabindex=\"0\" style=\"display: block;\">Logout</a>`\n\nThis element `<a#logout_sidebar_link.bm-item.menu-item>` is not visible because its parent `<div.bm-menu-wrap>` has CSS property: `display: none`\n\nFix this problem, or use `{force: true}` to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with",
+                "estack": "CypressError: Timed out retrying after 15050ms: `cy.click()` failed because this element is not visible:\n\n`<a id=\"logout_sidebar_link\" class=\"bm-item menu-item\" href=\"#\" tabindex=\"0\" style=\"display: block;\">Logout</a>`\n\nThis element `<a#logout_sidebar_link.bm-item.menu-item>` is not visible because its parent `<div.bm-menu-wrap>` has CSS property: `display: none`\n\nFix this problem, or use `{force: true}` to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with\n    at $Cy.ensureVisibility (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:148479:24)\n    at runAllChecks (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:136145:14)\n    at retryActionability (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:136199:16)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:13212:23)\n    at Function.Promise.attempt.Promise.try (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:10486:29)\n    at tryFn (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:153281:21)\n    at whenStable (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:153319:12)\n    at https://www.saucedemo.com/__cypress/runner/cypress_runner.js:152811:16\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:13212:23)\n    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:11147:31)\n    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:11204:18)\n    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:11249:10)\n    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:11329:18)\n    at Promise._fulfill (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:11273:18)\n    at https://www.saucedemo.com/__cypress/runner/cypress_runner.js:12887:46\nFrom Your Spec Code:\n    at Context.eval (https://www.saucedemo.com/__cypress/tests?p=cypress\\support\\index.js:300:44)",
+                "diff": null
+              },
+              "uuid": "ab00d7d4-d778-4bc7-be58-db4b352643e2",
+              "parentUUID": "5eb8bb50-c514-4477-b0c3-1f6f754fe2b3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Login with locked_out_user",
+              "fullTitle": "Adjust_home_task_suite Login with locked_out_user",
+              "timedOut": null,
+              "duration": 6178,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login(this.data.logoutuser, this.data.password);\ncy.contains('Sorry, this user has been locked out');",
+              "err": {},
+              "uuid": "547d00ac-0e8c-42fb-a7a8-3494d51f3fb8",
+              "parentUUID": "5eb8bb50-c514-4477-b0c3-1f6f754fe2b3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "248fc819-6a21-4f0c-9ffc-15b0e1fe25fb",
+            "547d00ac-0e8c-42fb-a7a8-3494d51f3fb8"
+          ],
+          "failures": [
+            "ab00d7d4-d778-4bc7-be58-db4b352643e2"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 54918,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}
