@@ -1,4 +1,5 @@
 # CypressSauceAutomation
+Precondition Node.js should be installed
 Step 1 - Download the project as a zip file and unzip
 Step 2 - Open the command prompt and Go the project folder path
 Step 3 - Run "npm run test"
